@@ -12,19 +12,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
- */ 
+ */
 
 /* The following exercises are adapted from: 
  * Gaddis, T. (2013). Starting Out with Java: From Control Structures through  
  * Objects. (5th ed.). Upper Saddle River, NJ: Pearson Education. 
  * ISBN: 978-0-13-285583-9 
- */ 
-
+ */
 package cpd3314.assign5;
+
+import java.util.Scanner;
 
 /**
  *
- * @author <ENTER YOUR NAME HERE>
+ * @author <HIRENKUMAR PATEL>
  */
 public class CPD3314Assign5 {
 
@@ -33,7 +34,7 @@ public class CPD3314Assign5 {
      */
     public static void main(String[] args) {
         // TODO: This is a sandbox. 
-        
+
         /* Modify it and use it to call whatever methods below you want to run.
          * 
          * To be clear: Your task is to create methods. All of the automated
@@ -42,7 +43,88 @@ public class CPD3314Assign5 {
          * method. The automated tests will tell you if you built it correctly.
          *
          */
-        
+        int choice;
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println("1.Retail Price Calculator.\n"
+                    + "2 Test Celsius.\n"
+                    + "3.Distance\n"
+                    + "4.Test Prime\n"
+                    + "5.Test Even\n"
+                    + "0.exit");
+            System.out.println("Enter Your Choice :");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    double wholeSaleCost,markupPerc;
+                    System.out.println("Enter Speed of a Vehicle (in miles-per-hour):");
+                    wholeSaleCost = sc.nextDouble();
+                    System.out.println("Enter the number of hours it has traveled:");
+                    markupPerc = sc.nextDouble();
+                    System.out.println("Retail price :" + calculateRetail(wholeSaleCost, markupPerc));
+                    break;
+                case 2:
+
+                    for (double i = 0; i <= 20; i++) {
+                        System.out.println("Celsius equivalent for fahrenhait " + i + " is " + celsius(i));
+                    }
+                    break;
+                case 3:
+
+                    double speedOfVehicle,
+                     noOfHourTravel,
+                     distance;
+
+                    System.out.println("Enter Speed of a Vehicle (in miles-per-hour):");
+                    speedOfVehicle = sc.nextDouble();
+                    System.out.println("Enter the number of hours it has traveled:");
+                    noOfHourTravel = sc.nextDouble();
+
+                    if (speedOfVehicle < 0) {
+                        System.out.println("Please enter valid Speed..");
+                    } else if (noOfHourTravel < 1) {
+                        System.out.println("Please enter hour greater than 1.");
+                    } else {
+                        System.out.println("Hour    Distance Traveled");
+                        System.out.println("-------------------------");
+                        for (double i = 1; i <= noOfHourTravel; i++) {
+                            distance = distance(speedOfVehicle, i);
+                            System.out.println(" " + i + "               " + distance);
+
+                        }
+                    }
+                    break;
+                case 4:
+                    int number1;
+                    boolean isPrime;
+                    System.out.println("Enter one Number :");
+                    number1 = sc.nextInt();
+                    isPrime = isPrime(number1);
+                    if (isPrime == true) {
+                        System.out.println("Number is Prime");
+                    } else {
+                        System.out.println("Number is not Prime. ");
+                    }
+                    break;
+                case 5:
+                    int number2;
+                    boolean isEven;
+                    System.out.println("Enter one Number :");
+                    number2 = sc.nextInt();
+                    isEven = isEven(number2);
+                    if (isEven == true) {
+                        System.out.println("Number is Even");
+                    } else {
+                        System.out.println("Number is not Even. ");
+                    }
+                    break;
+                default:
+                    break;
+
+            }
+        } while (choice != 0);
+
     }
 
     /*
@@ -61,30 +143,32 @@ public class CPD3314Assign5 {
      * - Gaddis pg. 316
      */
     // TODO: Build the calculateRetail method here
-    
-    
-    public static void doExercise2() {
+    /**
+     * @param args the command line arguments
+     */
+    public static double calculateRetail(double wholeSaleCost, double markupPerc) {
         // TODO: Complete the rest of Exercise #2 here to test calculateRetail
 
+        return wholeSaleCost + (wholeSaleCost * markupPerc / 100);
+
     }
-    
+
     /**
      * Exercise #6 - Celsius Temperature Table
-     * 
-     * The formula for converting a temperature from Fahrenheit to Celsius is
-     *     C = (5.0/9.0) * (F - 32)
-     * Where F is the Fahrenheit temperature and C is the Celsius temperature. 
-     * Write a method named celsius that accepts a Fahrenheit temperature as an 
-     * argument. The method should return the temperature, converted to Celsius. 
-     * Demonstrate the method by calling it in a loop that displays a table of 
-     * the Fahrenheit temperatures 0 through 20 and their Celsius equivalents.
+     *
+     * The formula for converting a temperature from Fahrenheit to Celsius is C
+     * = (5.0/9.0) * (F - 32) Where F is the Fahrenheit temperature and C is the
+     * Celsius temperature. Write a method named celsius that accepts a
+     * Fahrenheit temperature as an argument. The method should return the
+     * temperature, converted to Celsius. Demonstrate the method by calling it
+     * in a loop that displays a table of the Fahrenheit temperatures 0 through
+     * 20 and their Celsius equivalents.
      */
     // TODO: Build the celsius method here
-    
-    
-    public static void doExercise6() {
+    public static double celsius(double fahrenheit) {
         // TODO: Complete the rest of Exercise #6 here to test celsius
-        
+        return (5.0 / 9.0) * (fahrenheit - 32);
+
     }
 
     /*
@@ -99,12 +183,9 @@ public class CPD3314Assign5 {
      * - Gaddis pg. 319
      */
     // TODO: Build the distance method here
-    
-    
-    
-    public static void doExercise9() {
+    public static double distance(double speed, double time) {
         // TODO: Build the rest of exercise #9 here to test the distance method
-
+        return speed * time;
     }
 
     /*
@@ -119,11 +200,15 @@ public class CPD3314Assign5 {
      * - Gaddis pg. 320
      */
     // TODO: Build the isPrime method here
-    
-    
-    
-    public static void doExercise13() {
+    public static boolean isPrime(int number) {
         // TODO: Build a sample program to test the isPrime method here
+        boolean flag = true;
+        for (int i = 2; i < number; i++) {
+            if (number % 2 == 0) {
+                flag = false;
+            }
+        }
+        return flag;
 
     }
 
@@ -141,11 +226,13 @@ public class CPD3314Assign5 {
      * method should return true if the argument is even, or false otherwise.
      */
     // TODO: Build the isEven method here
-    
-    
-    
-    public static void doExercise15() {
+    public static boolean isEven(int number) {
         // TODO: Build a sample program to test the isEven method here
+        if (number % 2 == 0) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 }

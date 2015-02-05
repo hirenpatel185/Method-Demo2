@@ -58,9 +58,9 @@ public class CPD3314Assign5 {
             switch (choice) {
                 case 1:
                     double wholeSaleCost,markupPerc;
-                    System.out.println("Enter Speed of a Vehicle (in miles-per-hour):");
+                    System.out.println("Enter Whole sale cost:");
                     wholeSaleCost = sc.nextDouble();
-                    System.out.println("Enter the number of hours it has traveled:");
+                    System.out.println("Enter markup Percentage:");
                     markupPerc = sc.nextDouble();
                     System.out.println("Retail price :" + calculateRetail(wholeSaleCost, markupPerc));
                     break;
